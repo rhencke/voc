@@ -292,6 +292,21 @@ from man gettimeofday
   PROCEDURE -includeStat()
     "#include <sys/stat.h>";
 
+  PROCEDURE -includeSetjmp()
+      "#include <setjmp.h>";
+
+ (* for dirent *)
+   PROCEDURE -includeDirent()
+     "#include <sys/dirent.h>";
+
+ (* for rusage *)
+   PROCEDURE -includeResource()
+     "#include <sys/resource.h>";
+
+ (* for iovec *)
+   PROCEDURE -includeIovec()
+     "#include <sys/uio.h>";
+
   PROCEDURE -includeErrno()
     "#include <errno.h>";
 
