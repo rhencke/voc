@@ -6,7 +6,7 @@ MODULE Unix;  (* Josef Templ, 5.3.90  Linux system calls *)
     error numbers as defined in Unix
     other constants start with lower case letters *)
 
-IMPORT SYSTEM;
+IMPORT SYSTEM, Console;
 
 CONST
 
@@ -505,6 +505,30 @@ from man gettimeofday
   PROCEDURE -SizeofStat(): INTEGER
     "sizeof(struct stat)";
 
+  PROCEDURE -SizeofJmpBuf(): INTEGER
+    "sizeof(jmp_buf)";
+
+  PROCEDURE -SizeofSigJmpBuf(): INTEGER
+    "sizeof(sigjmp_buf)";
+
+  PROCEDURE -SizeofTimeval(): INTEGER
+    "sizeof(struct timeval)";
+
+  PROCEDURE -SizeofTimezone(): INTEGER
+    "sizeof(struct timezone)";
+
+  PROCEDURE -SizeofRusage(): INTEGER
+    "sizeof(struct rusage)";
+
+  PROCEDURE -SizeofFdSet(): INTEGER
+    "sizeof(fd_set)";
+
+  PROCEDURE -SizeofDirent(): INTEGER
+    "sizeof(struct dirent)";
+
+  PROCEDURE -SizeofIovec(): INTEGER
+    "sizeof(struct iovec)";
+
   PROCEDURE -Error(msg: ARRAY OF CHAR; len: INTEGER)
     "write(1/*stdout*/, msg, len); char ch = 0xa; write(1, &ch, 1)";
 
@@ -519,8 +543,31 @@ from man gettimeofday
     END
   END StatCheck;
 
-BEGIN
 
-   StatCheck();
+  PROCEDURE Check;
+  BEGIN
+      Console.String("struct stat size: "); Console.Int(SizeofStat(), 0); Console.Ln;
+      Console.String("Unix.Stat size: "); Console.Int(SIZE(Status), 0); Console.Ln;
+      Console.String("Unix.JmpBuf size: "); Console.Int(SIZE(JmpBuf), 0); Console.Ln;
+      Console.String("sigjmp_buf size: "); Console.Int(SizeofSigJmpBuf(), 0); Console.Ln;
+      Console.String("Unix.Timeval size: "); Console.Int(SIZE(Timeval), 0); Console.Ln;
+      Console.String("struct timeval size: "); Console.Int(SizeofTimeval(), 0); Console.Ln;
+       Console.String("Unix.Timezone size: "); Console.Int(SIZE(Timezone), 0); Console.Ln;
+      Console.String("struct timezone size: "); Console.Int(SizeofTimezone(), 0); Console.Ln;
+       Console.String("Unix.Rusage size: "); Console.Int(SIZE(Rusage), 0); Console.Ln;
+      Console.String("struct rusage size: "); Console.Int(SizeofRusage(), 0); Console.Ln;
+       Console.String("Unix.FdSet size: "); Console.Int(SIZE(FdSet), 0); Console.Ln;
+      Console.String("fdset size: "); Console.Int(SizeofFdSet(), 0); Console.Ln;
+      Console.String("Unix.Dirent size: "); Console.Int(SIZE(Dirent), 0); Console.Ln;
+      Console.String("struct dirent size: "); Console.Int(SizeofDirent(), 0); Console.Ln;
+       Console.String("Unix.Iovec size: "); Console.Int(SIZE(Iovec), 0); Console.Ln;
+      Console.String("struct iovec size: "); Console.Int(SizeofIovec(), 0); Console.Ln;
+  END Check;
+ 
+
+
+BEGIN
+   Check();
+   (*StatCheck();*)
 
 END Unix.
