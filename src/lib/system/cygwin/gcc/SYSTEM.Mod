@@ -14,8 +14,8 @@ MODULE SYSTEM;  (* J. Templ, 31.5.95 *)
   IMPORT SYSTEM;  (*must not import other modules*)
 
   CONST
-    ModNameLen = 20;
-    CmdNameLen = 24;
+    ModNameLen = 32;
+    CmdNameLen = 32;
     SZL = SIZE(LONGINT);
     Unit = 4*SZL;  (* smallest possible heap block *)
     nofLists = 9;  (* number of free_lists *)
@@ -468,13 +468,13 @@ MODULE SYSTEM;  (* J. Templ, 31.5.95 *)
   END MarkStack;
 
   PROCEDURE GC*(markStack: BOOLEAN);
+  (*
     VAR
       m: Module;
       i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23: LONGINT;
       cand: ARRAY 10000 OF LONGINT;
   BEGIN
-   
-   IF (gclock = 0) OR (gclock = 1) & ~markStack THEN
+    IF (gclock = 0) OR (gclock = 1) & ~markStack THEN
       Lock();
       m := SYSTEM.VAL(Module, modules);
       WHILE m # NIL DO 
@@ -502,7 +502,7 @@ MODULE SYSTEM;  (* J. Templ, 31.5.95 *)
       Finalize;
       Unlock()
     END
-	
+  *)
   END GC;
 
   PROCEDURE REGFIN*(obj: SYSTEM.PTR; finalize: Finalizer);
