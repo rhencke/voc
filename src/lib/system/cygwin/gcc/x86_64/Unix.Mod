@@ -238,7 +238,7 @@ from man gettimeofday
     interval*, value*: Timeval
   END ;
 
-  FdSet* = ARRAY 8 OF SET;
+  FdSet* = ARRAY 1 OF SET;
 
   SigCtxPtr* = POINTER TO SigContext;
   SigContext* = RECORD

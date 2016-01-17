@@ -473,7 +473,7 @@ MODULE SYSTEM;  (* J. Templ, 31.5.95 *)
       i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23: LONGINT;
       cand: ARRAY 10000 OF LONGINT;
   BEGIN
-   (*
+   
    IF (gclock = 0) OR (gclock = 1) & ~markStack THEN
       Lock();
       m := SYSTEM.VAL(Module, modules);
@@ -502,7 +502,7 @@ MODULE SYSTEM;  (* J. Templ, 31.5.95 *)
       Finalize;
       Unlock()
     END
-	*)
+	
   END GC;
 
   PROCEDURE REGFIN*(obj: SYSTEM.PTR; finalize: Finalizer);

@@ -940,7 +940,7 @@ MODULE OPC;	(* copyright (c) J. Templ 12.7.95 / 3.7.96 *)
 		IF obj # NIL THEN
 			InitImports(obj^.left);
 			IF (obj^.mode = Mod) & (obj^.mnolev # 0) THEN
-				BegStat; OPM.WriteString("__IMPORT(");
+				BegStat; OPM.WriteString("__VOCIMPORT(");
 				OPM.WriteStringVar(OPT.GlbMod[-obj^.mnolev].name); 
 				OPM.Write(CloseParen); EndStat
 			END ;
